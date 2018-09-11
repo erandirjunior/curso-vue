@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Diretiva v-once</title>
+</head>
+<body>
+	<div id="app">
+		<!-- v-once é uma diretiva que especifica que o valor não sera alterado no elemento em que foi especificado -->
+		<h1 v-once>{{ name }}</h1>
+		<input type="text" v-model:value="name">
+		<p>{{ name }}</p>
+		<p v-once>{{ name }}</p>
+		<p>{{ name }}</p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				name: 'Erandir Junior'
+			}
+		});
+	</script>
+</body>
+</html>
