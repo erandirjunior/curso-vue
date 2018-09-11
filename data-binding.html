@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Data Binding</title>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>{{ description }}</p>
+		<p>{{ isActive ? 'Ativo' : 'Inativo' }}</p>
+
+		<!-- v-bind é uma diretiva do vue para que seja possível utilizar valores dinâmicos nos atributos html 
+
+		: é uma abreviação do v-bind
+		-->
+		<a v-bind:href="url" :title="textAcademy">{{ textAcademy }}</a>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				title: 'Meu Título',
+				description: 'Sub title',
+				isActive: true,
+				url: 'http://academy.especializati.com.br',
+				textAcademy: 'EspecializaTi Academy'
+			}
+		});
+	</script>
+</body>
+</html>
