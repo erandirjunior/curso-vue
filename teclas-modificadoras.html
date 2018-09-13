@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventos de Teclas Modificadoras</title>
+</head>
+<body>
+	<div id="app">
+		<div @click.ctrl="testEvent">
+			Clique Aqui!!!
+		</div>
+		<br>
+
+		<div @click.alt="testEvent">
+			Clique Aqui!!!
+		</div>
+		<br>
+
+		<div @click.shift="testEvent">
+			Clique Aqui!!!
+		</div>
+		<br>
+
+		<div @click.meta="testEvent">
+			Clique Aqui!!!
+		</div>
+		<br>
+		
+		<!-- funciona exatamente se somente a tecla alt for pressionada -->
+		<div @click.alt="testEvent">
+			Clique Aqui!!!
+		</div>
+		<br>
+
+		<!-- combinando o código da tecla -->
+		<div @click.ctrl.63="testEvent">
+			Clique Aqui!!!
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+
+			},
+			methods: {
+				testEvent() {
+					alert('Test');
+				}
+			}
+		});
+	</script>
+</body>
+</html>
