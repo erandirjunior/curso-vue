@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventos do Mouse</title>
+</head>
+<body>
+	<div id="app">
+		<button @click.right="showAlert">Clique botão direito</button>
+		<button @click.left="showAlert">Clique botão esquedo</button>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			methods: {
+				showAlert() {
+					alert('Clicou!!!');
+				}
+			}
+		});
+	</script>
+</body>
+</html>
