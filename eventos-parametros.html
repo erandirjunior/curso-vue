@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventos com Parametros</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" @keyup="changeInput">
+		<hr>
+
+		<input type="text" @keyup="increment">
+		<button @click="incrementTwo(2)">Incrementa 2</button>
+		<input type="text" @keyup="incrementThree(2, $event)">
+
+		{{ count }}
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		/**
+		* methods: propriedade que recebe um objeto, onde são declarados os métodos do projeto.
+		*/
+		new Vue({
+			el: '#app',
+			data: {
+				count: 0
+			},
+			methods: {
+				changeInput(event) {
+					alert(event.target.value);
+				},
+				increment() {
+					this.count++;
+				},
+				incrementTwo(value) {
+					this.count += value;
+				},
+				incrementThree(value, event) {
+					this.count += (value + parseInt(event.target.value));
+				}
+			}
+		});
+	</script>
+</body>
+</html>
