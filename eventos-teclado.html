@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventos do Teclado</title>
+</head>
+<body>
+	<div id="app">
+		<!-- só irá exibir as modificações quando determinada tecla for digitada -->
+		<input type="text" @keyup.enter="changeValue" placeholder="enter">
+
+		<input type="text" @keyup.tab="changeValue" placeholder="tab">
+
+		<input type="text" @keyup.delete="changeValue" placeholder="delete">
+
+		<input type="text" @keyup.enter.tab="changeValue" placeholder="tab ou enter">
+
+		<input type="text" @keyup.enter.tab="changeValue" 
+		@keyup.up="changeValueTwo" placeholder="dois eventos">
+
+		<input type="text" @keyup="getCodeKey"
+		placeholder="exibe código do que foi digitado">
+
+		{{ valueText }}
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				valueText: '' 
+			},
+			methods: {
+				changeValue(event) {
+					this.valueText = event.target.value;
+				},
+				changeValueTwo() {
+					alert('Teste');
+				},
+				getCodeKey(event) {
+					console.log(event.keyCode)
+				}
+			}
+		});
+	</script>
+</body>
+</html>
