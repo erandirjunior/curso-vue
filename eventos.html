@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Eventos</title>
+</head>
+<body>
+	<div id="app">
+		<!-- v-on é uma diretiva que fica escutando os eventos -->
+		<input type="text" v-on:keyup="count++">
+		{{ count }}
+		<hr />
+		
+		<!-- @ é a forma abreviada do v-on -->
+		<button @click="count2++">Incrementar</button>
+		{{ count2 }}
+		<button @click="count2--">Decrementar</button>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				count: 0,
+				count2: 0
+			}
+		});
+	</script>
+</body>
+</html>
