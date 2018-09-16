@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Watchers(Observadores)</title>
+</head>
+<body>
+	<div id="app">
+		<button @click="count++">Incrementar</button>
+		<button @click="count--">Decrementar</button>
+		<p>{{ count }}</p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		/**
+		* watch: atributo que recebe funções que fazem algo assim que a propriedade recebe uma alteração.
+		*/
+		new Vue({
+			el: '#app',
+			data: {
+				count: 0
+			},
+			watch: {
+				count(value) {
+					setTimeout(n => {
+						this.count = 0;
+					},3000);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
