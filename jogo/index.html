@@ -30,7 +30,7 @@
 
 				<a href="#" @click.prevent="finishGame" class="btn btn-primary">Finalizar Jogo</a>
 
-				<a href="" class="btn btn-danger">Resetar</a>
+				<a href="#" @click.prevent="resetGame" class="btn btn-danger">Resetar</a>
 			</div>
 		</div>
 
@@ -107,6 +107,16 @@
 						alert('Empate');
 					}
 
+					setTimeout(n => {
+						this.resetGame();
+					}, 3000);
+
+				},
+				resetGame() {
+					this.playerOne.points = 0;
+					this.playerTwo.points = 0;
+					this.cartSelected = '';
+					this.playerActived = 1;
 				}
 			}
 		});
