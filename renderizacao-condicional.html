@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Renderização Condicional</title>
+</head>
+<body>
+	<div id="app">
+		<!-- v-if só renderiza elementos se a condição for atendida -->
+		<div v-if="number <= 12">
+			{{ textoExemplo }}
+		</div>
+
+		<div v-if="isActive">
+			{{ textoExemplo }}
+		</div>
+
+		<div v-if="isActive">
+			Ativo
+		</div>
+		<div v-else="isActive">
+			Não Ativo
+		</div>
+
+		<div v-if="number > 12">
+			É maior que 12
+		</div>
+		<div v-else-if="number == 12">
+			É igual a 12
+		</div>
+		<div v-if="number < 12">
+			É menor que 12
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				textoExemplo: 'Texto de Exemplo',
+				number: 12,
+				isActive: false
+			}
+		});
+	</script>
+</body>
+</html>
