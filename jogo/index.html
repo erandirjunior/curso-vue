@@ -10,22 +10,22 @@
 	<link rel="shortcut icon" href="assets/favicon.png" type="image/png">
 </head>
 <body>
-	<div class="container text-center">
+	<div class="container text-center" id="app">
 		<h1 class="title">Jogo 21 com Vue</h1>
 		<div class="row">
-			<div class="col-6 active">
+			<div :class="['col-6', playerActived === 1 ? 'active' : '']">
 				<img src="assets/player1.png" alt="Jogador 1">
 				<p>Player 1</p>
 			</div>
 
-			<div class="col-6">
+			<div :class="['col-6', playerActived === 2 ? 'active' : '']">
 				<img src="assets/player2.png" alt="Jogador 2">
 				<p>Player 2</p>
 			</div>
 
 			<div class="controls col">
-				<a href="" class="btn btn-success">Pular</a>
-				<a href="" class="btn btn-primary">Finalizar Jogo</a>
+				<a href="#" @click.prevent="changePlayer" class="btn btn-success">Pular</a>
+				<a  class="btn btn-primary">Finalizar Jogo</a>
 				<a href="" class="btn btn-danger">Resetar</a>
 			</div>
 		</div>
@@ -45,5 +45,18 @@
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				playerActived: 1
+			},
+			methods: {
+				changePlayer() {
+					this.playerActived = this.playerActived === 1 ? 2 : 1;
+				}
+			}
+		});
+	</script>
 </body>
 </html>
