@@ -27,7 +27,9 @@
 
 			<div class="controls col">
 				<a href="#" @click.prevent="changePlayer" class="btn btn-success">Pular</a>
-				<a  class="btn btn-primary">Finalizar Jogo</a>
+
+				<a href="#" @click.prevent="finishGame" class="btn btn-primary">Finalizar Jogo</a>
+
 				<a href="" class="btn btn-danger">Resetar</a>
 			</div>
 		</div>
@@ -76,6 +78,35 @@
 					if (this.playerActived === 2) {
 						this.playerTwo.points += this.cartSelected;
 					}
+
+					this.verifyPoints();
+				},
+				verifyPoints() {
+					if (this.playerOne.points >= 21 || this.playerTwo.points >= 21) {
+						this.finishGame();
+					}
+				},
+				finishGame() {
+					if (this.playerOne.points <= 21 && this.playerOne.points > this.playerTwo.points) {
+						alert('Player 1 é o vencedor');
+					}
+
+					if (this.playerTwo.points <= 21 && this.playerTwo.points > this.playerOne.points) {
+						alert('Player 2 é o vencedor');
+					}
+
+					if (this.playerOne.points > 21) {
+						alert('Player 1 é o vencedor');
+					}
+
+					if (this.playerTwo.points > 21) {
+						alert('Player 2 é o vencedor');
+					}
+
+					if (this.playerTwo.points === this.playerOne.points) {
+						alert('Empate');
+					}
+
 				}
 			}
 		});
