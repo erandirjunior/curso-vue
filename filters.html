@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Filters</title>
+	<style>
+		.active {
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<ul>
+			<li v-for="task in tasks" :class="{active: task.isActive}">{{ task.id }} -> {{ task.name | toUpperCase }} - {{ task.name | toLowerCase }}</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		/**
+		* filters servem para transformar e retornar dados, mas não devem modificar o dado original.
+		* 
+		* Podem ser declarados globalmente ou dentro do contexto Vue.
+		*/
+
+		Vue.filter('toLowerCase', function(val) {
+			return val.toLowerCase();
+		});
+		new Vue({
+			el: '#app',
+			data: {
+				title: 'Lista de Tarefas',
+				tasks: [
+					{id: 1, name: 'Lavar a  louça', isActive: false},
+					{id: 2, name: 'Lavar a roupa', isActive: true},
+					{id: 3, name: 'Varrer a casa', isActive: false},
+					{id: 4, name: 'Fazer o almoço', isActive: true},
+				]
+			},
+			filters: {
+				toUpperCase(val) {
+					return val.toUpperCase();
+				}
+			}
+		});
+	</script>
+</body>
+</html>
