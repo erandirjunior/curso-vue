@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Diretiva v-show</title>
+</head>
+<body>
+	<div id="app">
+		<div v-if="isActive">
+			V-IF
+		</div>
+
+		<!-- v-show funciona parecido com o v-if, porém ao invés de não renderizar o elemento, ele somente oculta o elemento -->
+		<div v-show="isActive">
+			V-SHOW
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				isActive: false
+			}
+		});
+	</script>
+</body>
+</html>
