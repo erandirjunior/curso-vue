@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Loops</title>
+	<style>
+		.active {
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+
+		<!-- v-for percorre um array de elementos -->
+		<ul>
+			<li v-for="i in 10">{{ i }}</li>
+
+			<hr>
+
+			<li v-for="product in products">{{ product }}</li>
+
+			<hr>
+
+			<li v-for="(task, index) in tasks">{{ index }} = {{ task.id }} -> {{ task.name }}</li>
+
+			<hr>
+
+			<li v-for="task in tasks">{{ task.id }} -> {{ task.name }}</li>
+			
+			<hr>
+			
+			<li v-for="(task, index) in tasks">{{ index }} = {{ task.id }} -> {{ task.name }}</li>
+			
+			<hr>
+			
+			<li v-for="(task, index) in tasks" :class="{active: task.isActive}">{{ index }} = {{ task.id }} -> {{ task.name }}</li>
+			
+			<hr>
+			
+			<li v-for="(task, index) in revert" :class="{active: task.isActive}">{{ index }} = {{ task.id }} -> {{ task.name }}</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				products: [
+					'TV', 
+					'Geladeira', 
+					'Microondas', 
+					'Rádio'
+				],
+				tasks: [
+					{id: 1, name: 'Lavar a  louça', isActive: false},
+					{id: 2, name: 'Lavar a roupa', isActive: true},
+					{id: 3, name: 'Varrer a casa', isActive: false},
+					{id: 4, name: 'Fazer o almoço', isActive: false},
+				]
+			},
+			computed: {
+				revert() {
+					return this.tasks.reverse();
+				}
+			}
+		});
+	</script>
+</body>
+</html>
