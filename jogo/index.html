@@ -15,13 +15,19 @@
 		<div class="row">
 			<div :class="['col-6', playerActived === 1 ? 'active' : '']">
 				<img src="assets/player1.png" alt="Jogador 1">
-				<p>Player 1</p>
+				<p>
+					Player 1
+					<span class="badge badge-default">{{ numberHistoricPlayerOne }}</span>
+				</p>
 				<p><strong>Pontos: </strong>{{ playerOne.points }}</p>
 			</div>
 
 			<div :class="['col-6', playerActived === 2 ? 'active' : '']">
 				<img src="assets/player2.png" alt="Jogador 2">
-				<p>Player 2</p>
+				<p>
+					Player 2
+					<span class="badge badge-default">{{ numberHistoricPlayerTwo }}</span>
+				</p>
 				<p><strong>Pontos: </strong>{{ playerTwo.points }}</p>
 			</div>
 
@@ -55,16 +61,19 @@
 			data: {
 				playerActived: 1,
 				playerOne: {
-					points: 0
+					points: 0,
+					historic: []
 				},
 				playerTwo: {
-					points: 0
+					points: 0,
+					historic: []
 				},
 				cartSelected: ''
 			},
 			methods: {
 				changePlayer() {
 					this.playerActived = this.playerActived === 1 ? 2 : 1;
+					this.cartSelected = '';
 				},
 				selectedCart() {
 					this.cartSelected = Math.floor((Math.random() * 13) + 1);
@@ -73,10 +82,12 @@
 				addPoints(points) {
 					if (this.playerActived === 1) {
 						this.playerOne.points += this.cartSelected;
+						this.playerOne.historic.push(points);
 					}
 
 					if (this.playerActived === 2) {
 						this.playerTwo.points += this.cartSelected;
+						this.playerTwo.historic.push(points);
 					}
 
 					this.verifyPoints();
@@ -118,6 +129,14 @@
 					this.cartSelected = '';
 					this.playerActived = 1;
 				}
+			},
+			computed: {
+				numberHistoricPlayerOne() {
+					return this.playerOne.historic.length;
+				},
+				numberHistoricPlayerTwo() {
+					return this.playerTwo.historic.length;
+				},
 			}
 		});
 	</script>
