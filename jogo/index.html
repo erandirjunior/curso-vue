@@ -49,7 +49,7 @@
 				</a>
 			</div>
 			<div class="col-6">
-				<img v-if="cartSelected" :src="`assets/carts/${cartSelected}.png`" alt="Carts" class="cart">
+				<img v-if="cartSelected" :src="getPathCart" alt="Carts" class="cart">
 			</div>
 		</div>
 	</div>
@@ -62,13 +62,16 @@
 				playerActived: 1,
 				playerOne: {
 					points: 0,
-					historic: []
+					historic: [],
+					message: 'Player 1 é o vencedor!'
 				},
 				playerTwo: {
 					points: 0,
-					historic: []
+					historic: [],
+					message: 'Player 2 é o vencedor!'
 				},
-				cartSelected: ''
+				cartSelected: '',
+				blackJack: 21
 			},
 			methods: {
 				changePlayer() {
@@ -93,25 +96,25 @@
 					this.verifyPoints();
 				},
 				verifyPoints() {
-					if (this.playerOne.points >= 21 || this.playerTwo.points >= 21) {
+					if (this.playerOne.points >= this.blackJack || this.playerTwo.points >= this.blackJack) {
 						this.finishGame();
 					}
 				},
 				finishGame() {
-					if (this.playerOne.points <= 21 && this.playerOne.points > this.playerTwo.points) {
-						alert('Player 1 é o vencedor');
+					if (this.playerOne.points <= this.blackJack && this.playerOne.points > this.playerTwo.points) {
+						alert(this.playerOne.message);
 					}
 
-					if (this.playerTwo.points <= 21 && this.playerTwo.points > this.playerOne.points) {
-						alert('Player 2 é o vencedor');
+					if (this.playerTwo.points <= this.blackJack && this.playerTwo.points > this.playerOne.points) {
+						alert(this.playerTwo.message);
 					}
 
-					if (this.playerOne.points > 21) {
-						alert('Player 1 é o vencedor');
+					if (this.playerOne.points > this.blackJack) {
+						alert(this.playerTwo.message);
 					}
 
-					if (this.playerTwo.points > 21) {
-						alert('Player 2 é o vencedor');
+					if (this.playerTwo.points > this.blackJack) {
+						alert(this.playerOne.message);
 					}
 
 					if (this.playerTwo.points === this.playerOne.points) {
@@ -137,6 +140,9 @@
 				numberHistoricPlayerTwo() {
 					return this.playerTwo.historic.length;
 				},
+				getPathCart() {
+					return `assets/carts/${this.cartSelected}.png`;
+				}
 			}
 		});
 	</script>
