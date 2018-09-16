@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Propriedade Computadas</title>
+</head>
+<body>
+	<div id="app">
+		<button @click="count++">Incrementar</button>
+		<button @click="count--">Decrementar</button>
+		<button @click="countTwo++">Incrementar 2</button>
+		<p>{{ count }} | {{ countComputed }} | {{ countMethod() }}  | {{ countTwo }}</p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		/**
+		* computed: propriedade onde são declarados métodos que retornam um valor, são executados somente quando são chamados, e logo após fazem cache do valor.
+		* Abstraem lógica de exibição complexa.
+		*/
+		new Vue({
+			el:'#app',
+			data: {
+				count: 0,
+				countTwo: 0
+			},
+			methods: {
+				countMethod() {
+					console.log('countMethod');
+					return this.count >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+				}
+			},
+			computed: {
+				countComputed() {
+					console.log('countComputed');
+					return this.count >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+				}
+			}
+		});
+	</script>
+</body>
+</html>
