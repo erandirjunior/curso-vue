@@ -1,29 +1,39 @@
 <template>
     <div>
         <form>
-            <input type="text" placeholder="Nome">
+            <input type="text" v-model="userData.name" placeholder="Nome">
+            {{ userData.name }}
             <hr>
 
-            <input type="email" placeholder="E-mail">
+            <input type="email" v-model="userData.email" placeholder="E-mail">
+            {{ userData.email }}
             <hr>
 
-            <input type="radio" name="sex" value="M"> Masculino
-            <input type="radio" name="sex" value="F"> Feminino
+            <input type="number" v-model.number="userData.age" placeholder="Idade">
+            {{ userData.age }}
             <hr>
 
-            <select>
+            <input type="radio" v-model="userData.sex" name="sex" value="M"> Masculino |
+            <input type="radio" v-model="userData.sex" name="sex" value="F"> Feminino
+            <p v-if="userData.sex">Sexo Selecionado: {{ userData.sex }}</p>
+            <hr>
+
+            <select v-model="userData.state">
                 <option value="">Selecione o Estado</option>
                 <option value="CE">Ceará</option>
                 <option value="MA">Maranhão</option>
                 <option value="RN">Rio Grande do Norte</option>
             </select>
+            <p v-if="userData.state">Estado selecionado: {{ userData.state }}</p>
             <hr>
 
             <label for="agree">Concordo com os termos de uso</label>
-            <input type="checkbox" id="agree">
+            <input v-model="terms" type="checkbox" id="agree">
+            <p v-if="terms">{{ terms }}</p>
             <hr>
 
-            <textarea cols="30" rows="10"></textarea>
+            <textarea cols="30" rows="10" v-model="description"></textarea>
+            {{ description }}
             <hr>
 
             <button type="submit">Enviar Agora</button>
@@ -33,7 +43,19 @@
 
 <script>
 export default {
-
+    data () {
+        return {
+            userData: {
+                name: '',
+                email: '',
+                age: '',
+                sex: '',
+                state: ''
+            },
+            terms: true,
+            description: ''
+        }
+    }
 }
 </script>
 
