@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="comp">
+        <h1>{{ title }}</h1>
         <p>Teste</p>
         <span>Novo teste {{ msg }}</span>
         <form-component></form-component>
@@ -12,7 +13,8 @@
     export default {
         data () {
             return {
-                msg: 'Curso de Vue JS'
+                msg: 'Curso de Vue JS',
+                title: 'Test Component'
             }
         },
         components: {
@@ -23,5 +25,13 @@
 
 <!--scoped é forma de definir que a estilização funcionará exclusivamente nesse componente-->
 <style scoped>
-    p { color: red; }
+p {
+    color: red;
+}
+
+.comp {
+    border: 1px solid green;
+    margin: 5px;
+    padding: 5px;
+}
 </style>
