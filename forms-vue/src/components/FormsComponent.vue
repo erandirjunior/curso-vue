@@ -33,7 +33,8 @@
             <hr>
 
             <textarea cols="30" rows="10" v-model="description"></textarea>
-            {{ description }}
+            <!--v-text não renderiza o texto-->
+            <div v-text="description" class="description"></div>
             <hr>
 
             <button type="submit">Enviar Agora</button>
@@ -60,5 +61,7 @@ export default {
 </script>
 
 <style scoped>
-
+.description {
+    white-space: pre;
+}
 </style>
