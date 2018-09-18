@@ -1,12 +1,15 @@
 <template>
     <div>
         <form>
-            <input type="text" v-model="userData.name" placeholder="Nome">
+            <input type="text" v-model="userData.name" data placeholder="Nome">
             {{ userData.name }}
             <hr>
 
-            <input type="email" v-model="userData.email" placeholder="E-mail">
-            {{ userData.email }}
+            <input type="email" name="email" v-validate="'required|email'" v-model="userData.email" placeholder="E-mail">
+            <div v-if="errors.has('email')" :class="{'is-danger': errors.has('email')}">
+                <span>{{ errors.first('email') }}</span>
+                <p>Deve ser um e-mail válido.</p>
+            </div>
             <hr>
 
             <input type="number" v-model.number="userData.age" placeholder="Idade">
@@ -61,7 +64,15 @@ export default {
 </script>
 
 <style scoped>
-.description {
-    white-space: pre;
-}
+    .description {
+        white-space: pre;
+    }
+
+    .is-danger {
+        border: 1px solid red;
+    }
+
+    .is-danger p {
+        color: red;
+    }
 </style>
