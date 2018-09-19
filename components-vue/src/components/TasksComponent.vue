@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>{{ title }}</h2>
+        <button @click="callParent">Chamar Pai</button>
         <ul>
             <li v-for="(item, index) in items" :key="index">{{ item }}</li>
         </ul>
@@ -13,6 +14,14 @@
         props: ['items', 'title'],
         data () {
             return {
+            }
+        },
+        methods: {
+            callParent () {
+                alert('callParent')
+
+                /*indica uma chamada a um elemento pai*/
+                this.$emit('calledParent')
             }
         }
     }

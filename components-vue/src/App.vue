@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <tasks-component :items="['Lavar', 'Passar', 'Cozinhar']" :title="'Lista de Tarefas'"></tasks-component>
+        <tasks-component @calledParent="answerChild" :items="['Lavar', 'Passar', 'Cozinhar']" :title="'Lista de Tarefas'"></tasks-component>
         <list-items-component :title="'Listagem de itens'" :items="[1, 2, 3, 4]"></list-items-component>
     </div>
 </template>
@@ -14,6 +14,11 @@ export default {
     components: {
         TasksComponent,
         ListItemsComponent
+    },
+    methods: {
+        answerChild () {
+            alert('answerChild')
+        }
     }
 }
 </script>
