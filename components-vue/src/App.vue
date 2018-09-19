@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-      <tasks-component></tasks-component>
+      <tasks-component :items="['Lavar', 'Passar', 'Cozinhar']" :title="'Lista de Tarefas'"></tasks-component>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import TasksComponent from './components/TasksComponent'
 export default {
     name: 'app',
     components: {
-      TasksComponent
+        TasksComponent
     }
 }
 </script>
@@ -20,7 +20,6 @@ export default {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     margin-top: 60px;
 }
