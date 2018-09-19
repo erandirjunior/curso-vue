@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <tasks-component @calledParent="answerChild" :items="['Lavar', 'Passar', 'Cozinhar']" :title="'Lista de Tarefas'"></tasks-component>
+        <tasks-component @calledParent="answerChild" :items="tasks" :title="'Lista de Tarefas'"></tasks-component>
         <list-items-component :title="'Listagem de itens'" :items="[1, 2, 3, 4]"></list-items-component>
     </div>
 </template>
@@ -15,9 +15,18 @@ export default {
         TasksComponent,
         ListItemsComponent
     },
+    data () {
+        return {
+            tasks: ['Lavar', 'Passar', 'Cozinhar']
+        }
+    },
     methods: {
-        answerChild () {
-            alert('answerChild')
+        answerChild (p1) {
+            alert(`Adiconado nova tarefa ${p1}`)
+            this.add(p1)
+        },
+        add (p1) {
+            this.tasks.push(p1)
         }
     }
 }
