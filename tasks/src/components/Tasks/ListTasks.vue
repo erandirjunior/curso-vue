@@ -2,10 +2,20 @@
     <div>
         <h2>{{ title }}</h2>
 
-        <form action="" class="form form-inline" @submit.prevent="onSubmit">
-            <input type="text" placeholder="Nome da Tarefa" class="form-control" v-model="task.name">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
+        <div class="row">
+            <div class="col">
+                <form action="" class="form form-inline" @submit.prevent="onSubmit">
+                    <input type="search" placeholder="Pesquisar..." class="form-control" v-model="filter">
+                </form>
+            </div>
+
+            <div class="col">
+                <form action="" class="form form-inline" @submit.prevent="onSubmit">
+                    <input type="text" placeholder="Nome da Tarefa" class="form-control" v-model="task.name">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
 
         <table class="table table-dark">
             <thead>
@@ -16,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(task, index) in tasks" :key="index">
+                <tr v-for="(task, index) in filteredItems" :key="index">
                     <td>{{ task.id }}</td>
                     <td>{{ task.name }}</td>
                     <td>
@@ -41,7 +51,8 @@
                     name: ''
                 },
                 updating: false,
-                indexTask: ''
+                indexTask: '',
+                filter: ''
             }
         },
         methods: {
@@ -77,6 +88,17 @@
             },
             remove (index) {
                 this.tasks.splice(index, 1)
+            }
+        },
+        computed: {
+            filteredItems () {
+                if (this.filter === '') {
+                    return this.tasks
+                }
+
+                return this.tasks.filter(task => task.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1)
+
+                /*return this.tasks.filter(task => task['name'].includes(this.filter))*/
             }
         }
     }
