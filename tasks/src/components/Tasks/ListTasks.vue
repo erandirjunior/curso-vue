@@ -12,7 +12,7 @@
             <div class="col">
                 <form action="" class="form form-inline" @submit.prevent="onSubmit">
                     <input type="text" placeholder="Nome da Tarefa" class="form-control" v-model="task.name">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
         </div>
@@ -30,8 +30,8 @@
                     <td>{{ task.id }}</td>
                     <td>{{ task.name }}</td>
                     <td>
-                        <a href="#" @click.prevent="edit(index)" class="btn btn-info">Editar</a>
-                        <a href="#" @click.prevent="remove(index)" class="btn btn-danger">Deletar</a>
+                        <a href="#" @click.prevent="edit(task.id)" class="btn btn-info">Editar</a>
+                        <a href="#" @click.prevent="remove(task.id)" class="btn btn-danger">Deletar</a>
                     </td>
                 </tr>
             </tbody>
@@ -66,10 +66,10 @@
 
                 this.clearForm();
             },
-            edit (index) {
-                this.task = this.tasks[index]
+            edit (id) {
+                this.indexTask = this.findIndexItem(id)
 
-                this.indexTask = index
+                this.task = this.tasks[this.indexTask]
 
                 this.updating = true
             },
@@ -86,8 +86,15 @@
                     name: ''
                 }
             },
-            remove (index) {
-                this.tasks.splice(index, 1)
+            remove (id) {
+                this.tasks.splice(this.findIndexItem(id), 1)
+            },
+            findIndexItem (id) {
+                for (let index = 0; index < this.tasks.length; index++) {
+                    if (this.tasks[index].id === id) {
+                        return index
+                    }
+                }
             }
         },
         computed: {
