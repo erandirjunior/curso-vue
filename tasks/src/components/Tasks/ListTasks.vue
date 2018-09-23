@@ -2,12 +2,17 @@
     <div>
         <h2>{{ title }}</h2>
 
+        <form action="" class="form form-inline" @submit.prevent="save">
+            <input type="text" placeholder="Nome da Tarefa" class="form-control" v-model="task.name">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+
         <table class="table table-dark">
             <thead>
                 <tr>
                     <td>Id</td>
                     <td>Nome</td>
-                    <td width="180px">Ações</td>
+                    <td width="190px">Ações</td>
                 </tr>
             </thead>
             <tbody>
@@ -30,16 +35,34 @@
         data () {
             return {
                 title: 'Lista de Tarefas',
-                tasks: [
-                    {id: 12, name: 'Teste'}
-                ]
+                tasks: [],
+                task: {
+                   id: '',
+                    name: ''
+                }
+            }
+        },
+        methods: {
+            save () {
+                this.task.id = this.tasks.length + 1
+
+                this.tasks.push(this.task)
+
+                this.task = {
+                    id: '',
+                    name: ''
+                }
             }
         }
     }
 </script>
 
 <style scoped>
-.btn {
-    margin-right: 5px;
-}
+    .btn {
+        margin: 5px;
+    }
+
+    form {
+        margin: 20px 0;
+    }
 </style>
