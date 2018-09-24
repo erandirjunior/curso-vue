@@ -5,6 +5,6 @@ import TasksComponent from './components/TasksComponent'
 // Definição das rotas
 export default [
     {path: '/', component: HomeComponent},
-    {path: '/products', component: ProductsComponent},
+    {path: '/products', component: ProductsComponent, name: 'produtos'},
     {path: '/tasks', component: TasksComponent},
 ]
