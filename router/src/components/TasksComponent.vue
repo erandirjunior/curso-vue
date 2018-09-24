@@ -1,6 +1,8 @@
 <template>
     <div>
         <h2>{{ title }}</h2>
+
+        <p>Parametro: {{ $route.params.id }}</p>
     </div>
 </template>
 
