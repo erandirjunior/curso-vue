@@ -2,12 +2,13 @@
     <div>
         <h2>{{ title }}</h2>
 
-        <p>Parametro: {{ $route.params.id }}</p>
+        <p>Parametro: {{ id }}</p>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['id'],
         data () {
             return {
                 title: 'Lista de Tarefas'
