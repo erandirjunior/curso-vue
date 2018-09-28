@@ -36,7 +36,9 @@
             },
             checkResult () {
                 let msg = this.result == this.reply ? 'Acertou!' : 'Errou!'
+
                 alert(msg)
+                this.$emit('changeMode')
             }
         }
     }
