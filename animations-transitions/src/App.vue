@@ -1,5 +1,8 @@
 <template>
     <div id="app">
+        <app-quiz></app-quiz>
+        <hr>
+
         <button @click.prevent="show = !show">Mostrar</button>
         <transition name="teste">
             <div v-if="show">Mostrando...</div>
@@ -8,6 +11,7 @@
 </template>
 
 <script>
+    import QuizComponent from './components/Animations/QuizComponent'
 
     export default {
         name: 'app',
@@ -16,6 +20,9 @@
                 msg: 'Welcome',
                 show: false
             }
+        },
+        components: {
+            'app-quiz': QuizComponent
         }
     }
 </script>
