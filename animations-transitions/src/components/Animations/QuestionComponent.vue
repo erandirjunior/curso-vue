@@ -1,11 +1,15 @@
 <template>
-    <div class="default">
-        <h2 v-text="question"></h2>
+    <div class="card">
+        <div class="card-header">
+            <h2 v-text="question"></h2>
+        </div>
 
-        <form @submit.prevent="checkResult">
-            <input type="text" placeholder="Resposta:" v-model="reply">
-            <button type="submit">Responder</button>
-        </form>
+        <div class="card-body">
+            <form @submit.prevent="checkResult" class="form form-inline">
+                <input type="text" placeholder="Resposta:" v-model="reply" class="form-control">
+                <button type="submit" class="btn btn-primary">Responder</button>
+            </form>
+        </div>
     </div>
 </template>
 

@@ -1,11 +1,15 @@
 <template>
-    <div>
+    <div class="container">
         <h2 v-text="title"></h2>
 
         <!--<app-question @changeMode="changeMode"></app-question>-->
-        <transition name="effect" mode="out-in">
-            <component :is="mode" @changeMode="changeMode"></component>
-        </transition>
+        <div class="row">
+            <div class="col">
+                <transition name="effect" mode="out-in">
+                    <component :is="mode" @changeMode="changeMode"></component>
+                </transition>
+            </div>
+        </div>
     </div>
 </template>
 

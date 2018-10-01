@@ -1,9 +1,9 @@
 <template>
-    <div class="success">
+    <div class="alert alert-success">
         <h1>{{ title }}</h1>
         <p>Sucesso na resposta</p>
 
-        <button @click="nextQuestion">Próxima Pergunta</button>
+        <button @click="nextQuestion" class="btn btn-success">Próxima Pergunta</button>
     </div>
 </template>
 
@@ -24,8 +24,4 @@
 </script>
 
 <style scoped>
-    .success {
-        border: 2px solid blue;
-        padding: 10px;
-    }
 </style>
