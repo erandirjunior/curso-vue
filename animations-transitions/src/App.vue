@@ -3,10 +3,10 @@
         <app-quiz></app-quiz>
         <hr>
 
-        <button @click.prevent="show = !show">Mostrar</button>
+        <!--<button @click.prevent="show = !show">Mostrar</button>
         <transition name="teste">
             <div v-if="show">Mostrando...</div>
-        </transition>
+        </transition>-->
     </div>
 </template>
 

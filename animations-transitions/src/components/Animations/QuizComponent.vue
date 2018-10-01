@@ -9,6 +9,9 @@
 
 <script>
     import QuestionComponent from './QuestionComponent'
+    import AnswerSuccessComponent from './AnswerSuccessComponent'
+    import AnswerErrorComponent from './AnswerErrorComponent'
+
     export default {
         name: "QuizComponent",
         data () {
@@ -18,11 +21,13 @@
             }
         },
         components: {
-            'app-question': QuestionComponent
+            'app-question': QuestionComponent,
+            'answer-success': AnswerSuccessComponent,
+            'answer-error': AnswerErrorComponent
         },
         methods: {
-            changeMode () {
-                alert('Uhuuu!')
+            changeMode (mode) {
+                this.mode = mode === undefined ? this.mode = 'app-question' : mode
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="default">
         <h2 v-text="question"></h2>
 
         <form @submit.prevent="checkResult">
@@ -35,15 +35,17 @@
                 return Math.round(Math.random() * (max - min)) + min
             },
             checkResult () {
-                let msg = this.result == this.reply ? 'Acertou!' : 'Errou!'
+                let mode = this.result == this.reply ? 'answer-success' : 'answer-error'
 
-                alert(msg)
-                this.$emit('changeMode')
+                this.$emit('changeMode', mode)
             }
         }
     }
 </script>
 
 <style scoped>
-
+    .default {
+        border: 2px solid green;
+        padding: 10px;
+    }
 </style>
