@@ -6,6 +6,13 @@
             <input type="text" v-model="cep" placeholder="Informe o CEP">
             <button type="submit">Buscar</button>
         </form>
+
+        <div v-show="address.bairro">
+            <p><b>Bairro:</b> {{ address.bairro }}</p>
+            <p><b>Logradouro:</b> {{ address.logradouro }}</p>
+            <p><b>Cidade:</b> {{ address.cidade }}</p>
+            <p><b>Estado:</b> {{ address.estado }}</p>
+        </div>
     </div>
 </template>
 
@@ -15,14 +22,15 @@
         data () {
             return {
                 title: 'Buscar Cep',
-                cep: ''
+                cep: '',
+                address: {}
             }
         },
         methods: {
             onSubmit () {
                 this.$http.get(`https://api.postmon.com.br/v1/cep/${this.cep}`).
                 then(response => {
-                    console.log(response.body)
+                    this.address = response.body
                 }, error => console.log(error))
             }
         }
