@@ -7,6 +7,12 @@
             <button type="submit">Buscar</button>
         </form>
 
+        <br/>
+
+        <div v-if="msgError">
+            {{ msgError }}
+        </div>
+
         <div v-if="preloader">
             <img src="../assets/preloader.gif" alt="Carregando..">
         </div>
@@ -28,18 +34,26 @@
                 title: 'Buscar Cep',
                 cep: '',
                 address: {},
-                preloader: false
+                preloader: false,
+                msgError: ''
             }
         },
         methods: {
             onSubmit () {
-                this.preloader = true
+                this.reset()
+
                 this.$http.get(`https://api.postmon.com.br/v1/cep/${this.cep}`).
                 then(response => {
                     this.address = response.body
                 }, error => {
                     console.log(error)
+                    this.msgError = 'CEP não Encontrado'
                 }).finally(() => this.preloader = false)
+            },
+            reset () {
+                this.address = {}
+                this.preloader = true
+                this.msgError = ''
             }
         }
     }
