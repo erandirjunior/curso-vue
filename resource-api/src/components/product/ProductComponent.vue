@@ -23,6 +23,10 @@
                 </tr>
             </tbody>
         </table>
+
+            <div v-if="preloader">
+                <img src="../../assets/preloader.gif" alt="Carregando" class="preloader">
+            </div>
     </div>
 </template>
 
@@ -32,7 +36,8 @@
         data () {
             return {
                 title: 'Lista de Produtos',
-                products: {}
+                products: {},
+                preloader: false
             }
         },
         created () {
@@ -40,10 +45,13 @@
         },
         methods: {
             getProducts () {
+                this.preloader = true
+
                 this.$http.get('http://127.0.0.1:8000/api/v1/products')
                     .then(response => {
                         this.products = response.body
                     }, error => console.log(error))
+                    .finally(() => this.preloader = false)
             }
         }
     }
