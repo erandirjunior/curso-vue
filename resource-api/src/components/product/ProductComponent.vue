@@ -11,7 +11,7 @@
                     <th width="200px">AÇÃO</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody v-if="!preloader">
                 <tr v-for="(product, index) in products.data" :key="index">
                     <th>{{ product.id }}</th>
                     <th>{{ product.name }}</th>
@@ -24,9 +24,18 @@
             </tbody>
         </table>
 
-            <div v-if="preloader">
-                <img src="../../assets/preloader.gif" alt="Carregando" class="preloader">
-            </div>
+        <div v-if="preloader">
+            <img src="../../assets/preloader.gif" alt="Carregando" class="preloader">
+        </div>
+
+        <ul class="pagination">
+            <li v-if="products.current_page - 1 >= 1" class="page-item">
+                <a href="#" @click.prevent="pagination(products.current_page - 1)" class="page-link">Voltar</a>
+            </li>
+            <li v-if="products.current_page < products.last_page"  class="page-item">
+                <a href="#" @click.prevent="pagination(products.current_page + 1)" class="page-link">Avançar</a>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -36,7 +45,10 @@
         data () {
             return {
                 title: 'Lista de Produtos',
-                products: {},
+                products: {
+                    current_page: 1,
+                    last_page: 1
+                },
                 preloader: false
             }
         },
@@ -47,11 +59,16 @@
             getProducts () {
                 this.preloader = true
 
-                this.$http.get('http://127.0.0.1:8000/api/v1/products')
+                this.$http.get(`http://127.0.0.1:8000/api/v1/products?page=${this.products.current_page}`)
                     .then(response => {
                         this.products = response.body
                     }, error => console.log(error))
                     .finally(() => this.preloader = false)
+            },
+            pagination (pageNumber) {
+                this.products.current_page = pageNumber
+
+                this.getProducts()
             }
         }
     }
