@@ -22,7 +22,7 @@
                     <th>{{ product.description }}</th>
                     <th>
                         <router-link :to="{name: 'product.edit', params: {id: product.id}}" class="btn btn-primary">Editar</router-link>
-                        <a href="#" class="btn btn-danger">Deletar</a>
+                        <a href="#" @click.prevent="deleteProduct(product.id)" class="btn btn-danger">Deletar</a>
                     </th>
                 </tr>
             </tbody>
@@ -84,6 +84,15 @@
                 this.products.current_page = pageNumber
 
                 this.getProducts()
+            },
+            deleteProduct (id) {
+                this.preloader = true
+
+                this.$http.delete(`http://127.0.0.1:8000/api/v1/products/${id}`)
+                    .then(response => {
+                        this.getProducts()
+                    }, error => console.log(error))
+                    .finally(() => this.preloader = false)
             }
         }
     }
