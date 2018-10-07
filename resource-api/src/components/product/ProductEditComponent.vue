@@ -74,7 +74,7 @@
             save () {
                 this.preloader = true
 
-                this.$http.post(`http://127.0.0.1:8000/api/v1/products`, this.product)
+                this.$http.put(`http://127.0.0.1:8000/api/v1/products/${this.id}`, this.product)
                     .then(response => {
                         this.$router.push('/product')
                     }, error => {
