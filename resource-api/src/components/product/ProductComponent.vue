@@ -28,20 +28,30 @@
             <img src="../../assets/preloader.gif" alt="Carregando" class="preloader">
         </div>
 
-        <ul class="pagination">
+        <pagination-component
+                :pagination="products"
+                :offset="offset"
+        @paginate="getProducts"></pagination-component>
+
+        <!--<ul class="pagination">
             <li v-if="products.current_page - 1 >= 1" class="page-item">
                 <a href="#" @click.prevent="pagination(products.current_page - 1)" class="page-link">Voltar</a>
             </li>
             <li v-if="products.current_page < products.last_page"  class="page-item">
                 <a href="#" @click.prevent="pagination(products.current_page + 1)" class="page-link">Avançar</a>
             </li>
-        </ul>
+        </ul>-->
     </div>
 </template>
 
 <script>
+    import PaginationComponent from '../general/PaginationComponent'
+
     export default {
         name: "ProductComponent",
+        components: {
+            PaginationComponent
+        },
         data () {
             return {
                 title: 'Lista de Produtos',
@@ -49,7 +59,8 @@
                     current_page: 1,
                     last_page: 1
                 },
-                preloader: false
+                preloader: false,
+                offset: 4
             }
         },
         created () {
