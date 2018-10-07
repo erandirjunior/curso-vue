@@ -4,6 +4,11 @@
 
         <router-link to="product/create" class="btn btn-info btn-create">Cadastrar Produto</router-link>
 
+        <div class="alert alert-danger text-center" v-if="confirmDelete">
+            <h2>Deseja realmente deletar?</h2>
+            <button class="btn btn-danger" @click.prevent="deleteProduct">Deletar Agora</button>
+        </div>
+
         <p>Total: <span>{{ products.total }}</span></p>
 
         <table class="table table-dark">
@@ -22,7 +27,7 @@
                     <th>{{ product.description }}</th>
                     <th>
                         <router-link :to="{name: 'product.edit', params: {id: product.id}}" class="btn btn-primary">Editar</router-link>
-                        <a href="#" @click.prevent="deleteProduct(product.id)" class="btn btn-danger">Deletar</a>
+                        <a href="#" @click.prevent="confirmDeleteProduct(product.id)" class="btn btn-danger">Deletar</a>
                     </th>
                 </tr>
             </tbody>
@@ -64,7 +69,9 @@
                     last_page: 1
                 },
                 preloader: false,
-                offset: 4
+                offset: 4,
+                confirmDelete: false,
+                id: 0
             }
         },
         created () {
@@ -85,14 +92,21 @@
 
                 this.getProducts()
             },
-            deleteProduct (id) {
+            deleteProduct () {
                 this.preloader = true
 
-                this.$http.delete(`http://127.0.0.1:8000/api/v1/products/${id}`)
+                this.$http.delete(`http://127.0.0.1:8000/api/v1/products/${this.id}`)
                     .then(response => {
                         this.getProducts()
                     }, error => console.log(error))
-                    .finally(() => this.preloader = false)
+                    .finally(() => {
+                        this.confirmDelete = false
+                        this.preloader = false
+                    })
+            },
+            confirmDeleteProduct (id) {
+                this.confirmDelete = true
+                this.id = id
             }
         }
     }
