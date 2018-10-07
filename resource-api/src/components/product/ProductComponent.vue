@@ -28,9 +28,7 @@
             </tbody>
         </table>
 
-        <div v-if="preloader">
-            <img src="../../assets/preloader.gif" alt="Carregando" class="preloader">
-        </div>
+        <preloader-component :preloader="preloader"></preloader-component>
 
         <pagination-component
                 :pagination="products"
@@ -50,11 +48,13 @@
 
 <script>
     import PaginationComponent from '../general/PaginationComponent'
+    import PreloaderComponent from '../general/PreloaderComponent'
 
     export default {
         name: "ProductComponent",
         components: {
-            PaginationComponent
+            PaginationComponent,
+            PreloaderComponent
         },
         data () {
             return {

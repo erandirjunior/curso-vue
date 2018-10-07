@@ -23,12 +23,19 @@
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
         </form>
+
+        <preloader-component :preloader="preloader"></preloader-component>
     </div>
 </template>
 
 <script>
+    import PreloaderComponent from '../general/PreloaderComponent'
+
     export default {
         name: "ProductCreateComponent",
+        components: {
+            PreloaderComponent
+        },
         data() {
             return {
                 title: 'Cadastrar Novo Produto',
@@ -36,14 +43,16 @@
                     name: '',
                     description: ''
                 },
-                errorsValidation: ''
+                errorsValidation: '',
+                preloader: false
             }
         },
         methods: {
         save () {
+            this.preloader = true
+
             this.$http.post(`http://127.0.0.1:8000/api/v1/products`, this.product)
                     .then(response => {
-                        //console.log(response)
                         this.$router.push('/product')
                     }, error => {
                         if (error.status == 422) {
@@ -51,7 +60,7 @@
                         }
                         console.log(error)
                     })
-                    .finally(() => console.log('Finalizou!!!'))
+                    .finally(() => this.preloader = false)
             }
         }
     }

@@ -13,7 +13,4 @@
 </script>
 
 <style>
-    .preloader {
-        max-width: 60px;
-    }
 </style>
