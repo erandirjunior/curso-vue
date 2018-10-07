@@ -46,7 +46,7 @@
         <pagination-component
                 :pagination="products"
                 :offset="offset"
-        @paginate="getProducts"></pagination-component>
+        @paginate="load"></pagination-component>
 
         <!--<ul class="pagination">
             <li v-if="products.current_page - 1 >= 1" class="page-item">
@@ -89,6 +89,10 @@
             this.getProducts()
         },
         methods: {
+            load (page) {
+                this.products.current_page = page
+                this.getProducts()
+            },
             getProducts () {
                 this.preloader = true
 

@@ -1,14 +1,12 @@
 <template>
     <ul class="pagination">
         <li v-if="pagination.current_page > 1">
-            <a href="#" class="page-link" aria-label="Previous"
-               @click.prevent="changePage(pagination.current_page - 1)">
+            <a href="#" class="page-link" aria-label="Previous" @click.prevent="changePage(pagination.current_page - 1)">
                 <span aria-hidden="true">«</span>
             </a>
         </li>
 
-        <li v-if="pagination.last_page > 1" v-for="(page, index) in pagesNumber"
-            :class="['page-item', {'active': page == pagination.current_page}]" :key="index">
+        <li v-if="pagination.last_page > 1" v-for="(page, index) in pagesNumber" :class="['page-item', {'active': page == pagination.current_page}]" :key="index">
             <a href="#" class="page-link" @click.prevent="changePage(page)">
                 {{ page }}
             </a>
@@ -24,7 +22,7 @@
 
 
 <script>
-    export default {
+    export default{
         props: {
             pagination: {
                 type: Object,
@@ -60,7 +58,7 @@
                 return pagesArray;
             }
         },
-        methods: {
+        methods : {
             changePage(page) {
                 // Dispara o evento @paginate do Component Pai
                 this.$emit('paginate', page);
