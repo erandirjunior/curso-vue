@@ -2,7 +2,15 @@
     <div>
         <h1>{{ title }}</h1>
 
-        <router-link to="product/create" class="btn btn-info btn-create">Cadastrar Produto</router-link>
+        <div class="row">
+            <div class="col">
+                <router-link to="product/create" class="btn btn-info btn-create">Cadastrar Produto</router-link>
+            </div>
+
+            <div class="col">
+                <product-search-component @search="search"></product-search-component>
+            </div>
+        </div>
 
         <div class="alert alert-danger text-center" v-if="confirmDelete">
             <h2>Deseja realmente deletar?</h2>
@@ -54,12 +62,14 @@
 <script>
     import PaginationComponent from '../general/PaginationComponent'
     import PreloaderComponent from '../general/PreloaderComponent'
+    import ProductSearchComponent from './ProductSearchComponent'
 
     export default {
         name: "ProductComponent",
         components: {
             PaginationComponent,
-            PreloaderComponent
+            PreloaderComponent,
+            ProductSearchComponent
         },
         data () {
             return {
@@ -71,7 +81,8 @@
                 preloader: false,
                 offset: 4,
                 confirmDelete: false,
-                id: 0
+                id: 0,
+                filter: ''
             }
         },
         created () {
@@ -81,7 +92,7 @@
             getProducts () {
                 this.preloader = true
 
-                this.$http.get(`http://127.0.0.1:8000/api/v1/products?page=${this.products.current_page}`)
+                this.$http.get(`http://127.0.0.1:8000/api/v1/products?page=${this.products.current_page}&filter=${this.filter}`)
                     .then(response => {
                         this.products = response.body
                     }, error => console.log(error))
@@ -107,6 +118,10 @@
             confirmDeleteProduct (id) {
                 this.confirmDelete = true
                 this.id = id
+            },
+            search (filter) {
+                this.filter = filter
+                this.getProducts()
             }
         }
     }
