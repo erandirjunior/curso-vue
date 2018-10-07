@@ -4,6 +4,8 @@
 
         <router-link to="product/create" class="btn btn-info btn-create">Cadastrar Produto</router-link>
 
+        <p>Total: <span>{{ products.total }}</span></p>
+
         <table class="table table-dark">
             <thead>
                 <tr>

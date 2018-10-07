@@ -31,8 +31,15 @@
             }
         },
         methods: {
-            save () {
-                console.log(this.product)
+        save () {
+            this.$http.post(`http://127.0.0.1:8000/api/v1/products`, this.product)
+                    .then(response => {
+                        //console.log(response)
+                        this.$router.push('/product')
+                    }, error => {
+                        console.log(error)
+                    })
+                    .finally(() => console.log('Finalizou!!!'))
             }
         }
     }
