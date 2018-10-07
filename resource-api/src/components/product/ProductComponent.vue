@@ -2,6 +2,8 @@
     <div>
         <h1>{{ title }}</h1>
 
+        <router-link to="product/create" class="btn btn-info btn-create">Cadastrar Produto</router-link>
+
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -88,5 +90,9 @@
 <style scoped>
     .btn-danger {
         margin-left: 5px;
+    }
+
+    .btn-create {
+        margin-bottom: 5px;
     }
 </style>
