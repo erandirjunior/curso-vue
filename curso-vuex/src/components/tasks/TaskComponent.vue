@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h2>{{ title }}</h2>
+        <h1 v-text="title"></h1>
     </div>
 </template>
 
 <script>
     export default {
+        name: "TaskComponent",
         data () {
             return {
-                title: 'home Page'
+                title: 'Lista de Tarefas'
             }
         }
     }

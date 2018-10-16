@@ -9,7 +9,7 @@
         name: "HomeComponent",
         data () {
             return {
-                title: 'Home Page do Site'
+                title: 'home Page do Site'
             }
         }
     }

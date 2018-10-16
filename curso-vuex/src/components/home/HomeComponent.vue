@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h2>{{ title }}</h2>
+        <h1 v-text="title"></h1>
     </div>
 </template>
 
 <script>
     export default {
+        name: "HomeComponent",
         data () {
             return {
-                title: 'home Page'
+                title: 'Home Page'
             }
         }
     }
