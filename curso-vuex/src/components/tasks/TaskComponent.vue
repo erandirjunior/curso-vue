@@ -5,7 +5,10 @@
         <task-add-component></task-add-component>
 
         <ul>
-            <li v-for="(task, index) in getTasks" :key="index">{{ task.name }}</li>
+            <li v-for="(task, index) in getTasks" :key="index" :class="{'completed': task.completed}">
+                <a href="#" @click.prevent="completedTask(task)">Toggle</a>
+                {{ task.name }}
+            </li>
         </ul>
     </div>
 </template>
@@ -25,6 +28,11 @@
                 return this.$store.state.tasks
             }
         },
+        methods: {
+            completedTask (task) {
+                this.$store.commit('TOGGLE_TASK', task)
+            }
+        },
         components: {
             TaskAddComponent
         }
@@ -32,5 +40,7 @@
 </script>
 
 <style scoped>
-
+    .completed {
+        background: green;
+    }
 </style>
