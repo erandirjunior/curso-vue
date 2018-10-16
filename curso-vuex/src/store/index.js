@@ -11,5 +11,10 @@ export default new Vuex.Store({
             {name: 'Lavar Banheiro', completed: false},
             {name: 'Lavar Roupa', completed: false},
         ],
+    },
+    mutations: {
+        ADD_TASK (state, task) {
+            state.tasks.push(task)
+        }
     }
 })
