@@ -26,6 +26,9 @@
         computed: {
             getTasks () {
                 return this.$store.state.tasks
+            },
+            getTaskSorted () {
+                return this.$store.getters.sortedTasks
             }
         },
         methods: {
