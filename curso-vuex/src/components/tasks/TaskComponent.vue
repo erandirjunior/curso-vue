@@ -25,7 +25,7 @@
         },
         computed: {
             getTasks () {
-                return this.$store.state.tasks
+                return this.$store.state.Tasks.tasks
             },
             getTaskSorted () {
                 return this.$store.getters.sortedTasks
