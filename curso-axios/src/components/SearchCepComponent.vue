@@ -6,6 +6,10 @@
             <input type="text" placeholder="CEP" v-model="cep">
             <button type="submit">Buscar</button>
         </form>
+        
+        <div v-if="preloader">
+            <img src="../assets/preloader.gif" alt="Preloader">
+        </div>
 
         <div v-show="address.cep">
             <p>CEP: {{ address.cep }}</p>
@@ -26,18 +30,21 @@
             return {
                 title: 'Buscar CEP',
                 cep: '',
-                address: {}
+                address: {},
+                preloader: false
             }
         },
         methods: {
             onSubmit () {
+                this.preloader = true
+
                 axios.get(`http://viacep.com.br/ws/${this.cep}/json/`)
                     .then(response => {
                         this.address = response.data
                         console.log(response)
                     })
                     .catch(error => console.log(error))
-                    .finally(() => console.log('Finalizado'))
+                    .finally(() => this.preloader = false)
             }
         }
     }
