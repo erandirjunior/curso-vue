@@ -3,8 +3,12 @@
         <h1 v-text="title"></h1>
 
         <form @submit.prevent="onSubmit">
-            <input type="text" placeholder="CEP" v-model="cep">
-            <button type="submit">Buscar</button>
+            <div :class="{'error': error}">
+                <input type="text" placeholder="CEP" v-model="cep">
+                <button type="submit">Buscar</button>
+
+                <div v-if="error" v-text="error"></div>
+            </div>
         </form>
         
         <div v-if="preloader">
@@ -31,7 +35,8 @@
                 title: 'Buscar CEP',
                 cep: '',
                 address: {},
-                preloader: false
+                preloader: false,
+                error: ''
             }
         },
         methods: {
@@ -40,10 +45,15 @@
 
                 axios.get(`http://viacep.com.br/ws/${this.cep}/json/`)
                     .then(response => {
-                        this.address = response.data
-                        console.log(response)
+                        if (response.data.erro) {
+                            this.error = 'Cep Inválido'
+                        } else {
+                            this.address = response.data
+                        }
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => {
+                        this.error = '404'
+                    })
                     .finally(() => this.preloader = false)
             }
         }
@@ -51,5 +61,13 @@
 </script>
 
 <style scoped>
+
+    .error {
+        color: red;
+    }
+
+    .error input {
+        border: 1px solid red;
+    }
 
 </style>
