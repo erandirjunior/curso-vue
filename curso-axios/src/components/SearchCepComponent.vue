@@ -41,7 +41,7 @@
         },
         methods: {
             onSubmit () {
-                this.preloader = true
+                this.reset()
 
                 axios.get(`http://viacep.com.br/ws/${this.cep}/json/`)
                     .then(response => {
@@ -55,6 +55,12 @@
                         this.error = '404'
                     })
                     .finally(() => this.preloader = false)
+            },
+            reset () {
+                this.address = {}
+                this.preloader = true
+                this.error = false
+
             }
         }
     }
